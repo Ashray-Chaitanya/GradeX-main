@@ -4,47 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/prof.css') }}"></head>
+    <title>College Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prof.css') }}">
+</head>
 
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Welcome to Your Dashboard</h1>
-        </header>
-        <div class="profile">
-            <img src="profile.jpg" alt="Profile Picture" class="profile-img">
-            <div class="student-details">
-                <h2 id="studentName">John Doe</h2>
-                <p id="studentID">Student ID: 123456789</p>
-                <p id="studentCourse">Course: Computer Science</p>
-                <p id="studentYear">Year: Sophomore</p>
-            </div>
-        </div>
-        <div class="info-cards">
-            <div class="card">
-                <h3>Grades</h3>
-                <p>Check your latest grades.</p>
-                <button onclick="showDetails('grades')">View Grades</button>
-            </div>
-            <div class="card">
-                <h3>Schedule</h3>
-                <p>View your class schedule.</p>
-                <button onclick="showDetails('schedule')">View Schedule</button>
-            </div>
-            <div class="card">
-                <h3>Assignments</h3>
-                <p>See your upcoming assignments.</p>
-                <button onclick="showDetails('assignments')">View Assignments</button>
-            </div>
-        </div>
-        <div class="foot"> 
-        <footer class="footer">
-            <p>&copy; 2024 College Name. All rights reserved.</p>
-        </footer>
-        </div>
+    <div class="navbar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Departments</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
     </div>
-    <script src="scripts.js"></script>
+    <div class="main-content">
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/entrance.jpeg') }}" alt="College Entrance">
+        </div>
+        <div class="student-profile">
+            <div class="profile-pic-container">
+                <img src="{{ url_for('static', filename='images/profile-pic.png') }}" alt="Profile Picture">
+            </div>
+            <div class="profile-details">
+                <p>Student Name</p>
+                <p>USN: 123456</p>
+                <p>Branch: Information Science</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="#" class="button">Grades</a>
+            <a href="#" class="button">Assignments</a>
+            <a href="#" class="button">Timetable</a>
+        </div>
+        <p>Welcome to the official dashboard of [College Name]. Here you can find information about our departments,
+            faculty, and upcoming events.</p>
+    </div>
 </body>
 
 </html>

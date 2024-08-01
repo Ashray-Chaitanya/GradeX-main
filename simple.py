@@ -38,7 +38,7 @@ def process_chart(data,index):
     labels = []
     values = []
     for row in data[0][0]:
-        labels.append(row[0])  # Assuming first column is label    
+        labels.append(row[0])  
         values.append(row[index])  # Assuming second column is value
     return [{
         'labels': labels,
@@ -70,18 +70,16 @@ def home():
 def about():
     return render_template("aboutUs.html")
 
-@app.route("/prof", methods=["GET"])
-def prof():
-    return render_template("prof.html")
-
 @app.route("/tt", methods=["GET"])
 def tt():
     return render_template("tt.html")
 
+user_main=" "
 
 @app.route("/home", methods=["GET", "POST"])
 def login():
     username = request.form["username"]
+    user_main = username[4:]
     password = request.form["password"]
     cursor = mysql.connection.cursor()
     try:
@@ -106,6 +104,17 @@ def login():
     return render_template("index.html")
 
 
+@app.route("/prof", methods=["GET"])
+def prof():
+    cursor = mysql.connection.cursor()
+    # print in html
+    name_main = cursor.execute(f"select Name from Namelist where usn = '1BI22IS{user_main}'" )
+    usn_main = f"1BI22IS{user_main}"
+    #print in html 
+    cursor.close()
+    return render_template("prof.html")
+
+
 @app.route("/login-complete", methods=["POST", "GET"])
 def login_complete():
     if request.method == "GET":
@@ -119,7 +128,6 @@ def login_complete():
             cursor.execute(f"SELECT * FROM {usn}")
             data = cursor.fetchall()
             cursor.close()
-
 
             return jsonify(success=True, students=data)
         except Exception as e:
@@ -152,8 +160,7 @@ def dashboard(index):
     for i in range(1,6):
         chart.append(process_chart(data,i))
     return render_template('stats.html', charts=chart,index=index,max_marks=max_marks[0], sub_code=sub_code, failed=failed[0])
-                           
-webbrowser.open("http://127.0.0.1:8000")
+                        
 app.run(port=8000, debug=True)
 
 
