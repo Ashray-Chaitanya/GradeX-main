@@ -60,6 +60,14 @@ def get_subcode(index):
         return "BCS303"
     elif index == 3:
         return "BCS304"
+    elif index == 4:
+        return "BCSL305"
+    elif index == 5:
+        return "BCS307"
+    elif index == 6:
+        return "BPEK359"
+    elif index == 7:
+        return "BCS358D"
     
 
 @app.route("/", methods=["GET"])
@@ -161,6 +169,11 @@ def dashboard(index):
         chart.append(process_chart(data,i))
     return render_template('stats.html', charts=chart,index=index,max_marks=max_marks[0], sub_code=sub_code, failed=failed[0])
                         
+@app.route('/stats',methods=["GET"])
+def stat():
+    index=0
+    return render_template('stat_nav.html')
+
 app.run(port=8000, debug=True)
 
 

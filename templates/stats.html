@@ -5,23 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GradeX</title>
     <link rel="icon" href="{{ url_for('static', filename='images/bit.png') }}" type="image/x-icon">    
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='stats.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script>
 
 </head>
 <body>
-    <header class="header">
-        <div class="container ">
-            <div class = 'logo' >
-                <img src="{{ url_for('static', filename='images/bit-logoo.webp') }}" alt="Institute Logo"> 
-        </div>
-    </div>
-    </header>
-    <h3>MAX MARKS SCORED IN {{ sub_code }} : {{ max_marks }}<h3>
+  <div id = "logoid">
+    <img src="{{ url_for('static', filename='images/bit-logoo.webp') }}" alt="Institute Logo" id="logo">
+</div>
+    <nav>
+    <ul>
+        <li><a href="/">Sign In </a></li>
+        <li><a href="/about-us">About Us</a></li>
+        <li><a href="/calc">GPA Calculator</a></li>
+        <li><a href="/stats">Stats</a></li>
+        
+    </ul>
+</nav>
+    <h1>Welcome to the dashboard</h1>
+    <h3>MAX MARKS SCORED IN {{ sub_code }} : {{ max_marks[0] }} scoring {{ max_marks[index+1] }}<h3>
         <br>
     <h3>NO of students failed in  {{ sub_code }} : {{ failed }}</h3>
 
+
+    
 
     <div id="pieChartContainer"> <canvas id="myPieChart"></canvas> </div>
 
@@ -30,8 +38,9 @@
             labels: ['Passed', 'Failed'],
             datasets: [{
               label: 'Food Category Distribution',
-              data: [{{ failed }}, 70-{{ failed }}],
-              backgroundColor: ['rgba(255, 99, 132, 0.2)', // Light pink for fruits
+              data: [70-{{ failed }}, {{ failed }} ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', // Light pink for fruits
                 'rgba(54, 162, 235, 0.2)', // Light blue for vegetables
               ],
               borderColor: [
@@ -47,9 +56,14 @@
         options: {
             maintainAspectRatio: false, // Disable aspect ratio maintenance
             width: 300,
-            height: 200,
+            height: 250,
           }
       });
     </script>
+
+    <a href="{{ url_for('max', index=index) }}" class="custom-btn">Go to Detailed stats</a>
+
+
+
 </body>
 </html>
