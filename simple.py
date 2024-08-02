@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request,jsonify
 from flask_mysqldb import MySQL
-import webbrowser
 
 app = Flask(__name__, static_folder="static", static_url_path="/static")
 app.config["MYSQL_HOST"] = "localhost"
@@ -8,6 +7,8 @@ app.config["MYSQL_USER"] = "root"
 app.config["MYSQL_PASSWORD"] = "Jett@h1k0"
 app.config["MYSQL_DB"] = "new_schema"
 leftmymark = "Shreyas"
+name_main = ""
+usn_main = ""
 mysql = MySQL(app)
 
 def get_data():
@@ -82,12 +83,27 @@ def about():
 def tt():
     return render_template("tt.html")
 
-user_main=" "
+user_main=""
+
+@app.route("/prof", methods=["GET"])
+def prof():
+    global user_main, name_main, usn_main
+    if(user_main == ""):
+        return "nakkan dont try to access without login"
+    cursor = mysql.connection.cursor()
+    # print in html
+    name_main = cursor.execute(f"select Name from Namelist where usn = '1BI22IS{user_main}'" )
+    usn_main = f"1BI22IS{user_main[4:]}"
+    #print in html 
+    cursor.close()
+    print("Prof reached")
+    return render_template("prof.html")
+
 
 @app.route("/home", methods=["GET", "POST"])
 def login():
+    global user_main
     username = request.form["username"]
-    user_main = username[4:]
     password = request.form["password"]
     cursor = mysql.connection.cursor()
     try:
@@ -103,24 +119,14 @@ def login():
             latest_entry = cursor.fetchone()
             if latest_entry[0] == password:
                 print("success")
+                user_main = username[4:]
             else:
                 raise Exception
     except Exception:
-        return "WRONG INFO"
+        return jsonify({"error": "lol wrong credentials noob try remebering harder next time"})
     mysql.connection.commit()
     cursor.close()
-    return render_template("index.html")
-
-
-@app.route("/prof", methods=["GET"])
-def prof():
-    cursor = mysql.connection.cursor()
-    # print in html
-    name_main = cursor.execute(f"select Name from Namelist where usn = '1BI22IS{user_main}'" )
-    usn_main = f"1BI22IS{user_main}"
-    #print in html 
-    cursor.close()
-    return render_template("prof.html")
+    return jsonify({"success": "successful login"})
 
 
 @app.route("/login-complete", methods=["POST", "GET"])
@@ -173,6 +179,14 @@ def dashboard(index):
 def stat():
     index=0
     return render_template('stat_nav.html')
+
+@app.route("/get-stud-details")
+def stud_details():
+    global user_main
+    if(user_main == ""):
+        return jsonify({"error": "No student has logged in"})
+    else:
+        return jsonify({"student_name": f"Name: {name_main}", "student_usn": f"USN: {usn_main}"})
 
 app.run(port=8000, debug=True)
 

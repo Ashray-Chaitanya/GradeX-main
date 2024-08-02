@@ -64,21 +64,4 @@ function printData() {
 
 }
 
-document.getElementById('Analyze').addEventListener('click', function() {
-  // Get the required data
-  const studentData = document.getElementById('tableBody').querySelectorAll('tr');
-  const div = document.createElement('div');
-});
-
-function analyzeStudentData() {
- 
-  // Placeholder for analysis logic
-    div.innerHTML= studentData;
-  const data = studentData.textContent; // Remove leading/trailing whitespace
-
-  const resultElement = document.getElementById('result');
-  resultElement.innerHTML = `<p>The data is: ${data}</p>`;
-
-  };
-
 

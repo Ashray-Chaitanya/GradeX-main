@@ -1,6 +1,6 @@
 body {
-    font-family: Georgia, Times, 'Times New Roman', serif;   
-     background: linear-gradient(45deg, #b6fcd5, #88d8b0, #56ab91, #2e8b57);
+    font-family: "Roboto Mono", monospace;  
+       background: linear-gradient(45deg, #b6fcd5, #88d8b0, #56ab91, #2e8b57);
     color: #fff;
     margin: 0;
     padding: 0;

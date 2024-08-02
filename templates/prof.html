@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/prof.css') }}">
+    <script src="{{ url_for('static', filename='js/prof.js') }}" defer></script>
+
 </head>
 
 <body>
@@ -14,8 +16,8 @@
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">Departments</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="https://bit-bangalore.edu.in/department-list">Departments</a></li>
+            <li><a href="https://maps.app.goo.gl/7gxXeunJJvqyHacNA" >Visit Us</a></li>
         </ul>
     </div>
     <div class="main-content">
@@ -27,8 +29,8 @@
                 <img src="{{ url_for('static', filename='images/profile-pic.png') }}" alt="Profile Picture">
             </div>
             <div class="profile-details">
-                <p>Student Name</p>
-                <p>USN: 123456</p>
+                <p id="stud-name">Student Name</p>
+                <p id="stud-usn">USN: 123456</p>
                 <p>Branch: Information Science</p>
             </div>
         </div>
