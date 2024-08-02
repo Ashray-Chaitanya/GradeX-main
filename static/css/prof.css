@@ -1,5 +1,6 @@
 body {
-    font-family: "Roboto Mono", monospace;    margin: 0;
+    font-family: "Roboto Mono", monospace;
+    margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -49,7 +50,7 @@ body {
 
 .image-container {
     text-align: center;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .image-container img {
@@ -63,8 +64,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .profile-pic-container {
@@ -113,6 +113,6 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
-p{
+p {
     margin: 0;
 }
