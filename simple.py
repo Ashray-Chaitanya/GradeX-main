@@ -91,10 +91,8 @@ def prof():
     if(user_main == ""):
         return "nakkan dont try to access without login"
     cursor = mysql.connection.cursor()
-    # print in html
     name_main = cursor.execute(f"select Name from Namelist where usn = '1BI22IS{user_main}'" )
     usn_main = f"1BI22IS{user_main[4:]}"
-    #print in html 
     cursor.close()
     print("Prof reached")
     return render_template("prof.html")

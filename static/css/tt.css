@@ -1,6 +1,6 @@
 body {
-        font-family: "Roboto Mono", monospace;
-            font-optical-sizing: auto;
+    font-family: "Roboto Mono", monospace;
+      font-optical-sizing: auto;
             font-weight:100;
             font-style: normal;
 
@@ -92,9 +92,9 @@ nav {
     align-items: center;
     justify-content: center;
     padding: 1rem 2rem;
-    background-color: rgb(76, 115, 85);
+    background-color: rgb(76, 115,85); 
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: auto;
 }
 
 nav ul {
