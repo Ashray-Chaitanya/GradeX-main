@@ -16,10 +16,11 @@
 </div>
     <nav>
     <ul>
-        <li><a href="/">Sign In </a></li>
         <li><a href="/about-us">About Us</a></li>
         <li><a href="/calc">GPA Calculator</a></li>
-        <li><a href="/stats">Stats</a></li>
+        <li><a href="/stats">Statistics</a></li>
+        <li><a href="/">Logout </a></li>
+
         
     </ul>
 </nav>
@@ -27,39 +28,33 @@
     <h3>MAX MARKS SCORED IN {{ sub_code }} : {{ max_marks[0] }} scoring {{ max_marks[index+1] }}<h3>
         <br>
     <h3>NO of students failed in  {{ sub_code }} : {{ failed }}</h3>
+<div id="pieChartContainer">
+  <canvas id="myPieChart" width="150" height="150"></canvas>
+</div>
+
+<script>
+  // Example value for failed
+  const failed = 5; // This should be dynamically set in real cases
+  const chart_data = {
+    labels: ['Passed', 'Failed'],
+    datasets: [{
+      label: 'Food Category Distribution',
+      data: [70 - failed, failed],
+      backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+      borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
+    }]
+  };
+  const ctx = document.getElementById('myPieChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'pie', // Specify chart type as pie
+    data: chart_data, // Pass your data to the chart
+    options: {
+      maintainAspectRatio: false, // Disable aspect ratio maintenance
+    }
+  });
+</script>
 
 
-    
-
-    <div id="pieChartContainer"> <canvas id="myPieChart"></canvas> </div>
-
-    <script>
-        const chart_data = {
-            labels: ['Passed', 'Failed'],
-            datasets: [{
-              label: 'Food Category Distribution',
-              data: [70-{{ failed }}, {{ failed }} ],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.2)', // Light pink for fruits
-                'rgba(54, 162, 235, 0.2)', // Light blue for vegetables
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-              ],
-            }]
-          };
-      const ctx = document.getElementById('myPieChart').getContext('2d');
-      const chart = new Chart(ctx, {
-        type: 'pie', // Specify chart type as pie
-        data: chart_data, // Pass your data to the chart
-        options: {
-            maintainAspectRatio: false, // Disable aspect ratio maintenance
-            width: 300,
-            height: 250,
-          }
-      });
-    </script>
 
     <a href="{{ url_for('max', index=index) }}" class="custom-btn">Go to Detailed stats</a>
 

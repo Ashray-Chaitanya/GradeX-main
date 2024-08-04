@@ -3,8 +3,11 @@ body {
 font-family: "Roboto Mono", monospace;
   font-optical-sizing: auto;
   font-weight: 100;
-  font-style: normal;  }
+  font-style: normal;
+font-size: 1.6rem;  
+}
   
+
   .btn {
     margin-top: 1rem;
     transition: all 0.3s;
@@ -53,4 +56,6 @@ font-family: "Roboto Mono", monospace;
   .invisible {
     display: none;
   }
-  
+  h1{
+    font-size: 2rem;
+  }

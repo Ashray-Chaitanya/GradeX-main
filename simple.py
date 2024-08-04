@@ -186,6 +186,10 @@ def stud_details():
     else:
         return jsonify({"student_name": f"Name: {name_main}", "student_usn": f"USN: {usn_main}"})
 
+@app.route('/mane',methods=["GET"])
+def mane():
+    return render_template("index.html")
+
 app.run(port=8000, debug=True)
 
 
